@@ -31,8 +31,9 @@ def main():
         images = ("images/image_1.png", "images/image_2.png", "images/image_3.png", "images/image_4.png", "images/image_5.png", "images/image_6.png", "images/image_7.png", "images/image_8.png")
         data = datamanipulation.SliceImage(datamanipulation.LoadImageData(images), featureSize*colorChannels, featureSize)
         publisher.PublishMsg("KMean Clustering Started")
-        publisher.PublishMsg("validationgraph")
-        publisher.PublishMsg("flushgraph")
+        publisher.PublishMsg(str(numberOfCentroids) + " clusters of size " + str(featureSize) + "x" + str(featureSize))
+        publisher.PublishCmd("validationgraph")
+        publisher.PublishCmd("flushgraph")
         KMean = kmean.KMean(featureSize*featureSize*colorChannels, numberOfCentroids)
         if(useLastCentroids == "y" or useLastCentroids == "Y"):
             data, centroids = KMean.KMeanClustering(data, datamanipulation.LoadCentroids("C:/Images/TempCentroids_" + str(colorChannels) + ".txt"), limit=epochs)

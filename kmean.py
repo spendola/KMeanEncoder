@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import scipy.spatial.distance as dist
 from mpl_toolkits.mplot3d import Axes3D
 import publisher
-
 import datamanipulation
 
 class KMean():
@@ -66,6 +65,7 @@ class KMean():
         if(centroids != newcentroids and epoch < limit):
             return self.KMeanClustering(data, newcentroids, epoch+1, limit)
         else:
+            publisher.PublishMsg("clustering completed")
             print("clustering completed")
             
         # Return finals centroids
